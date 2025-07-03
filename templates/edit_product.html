@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Product - Inventory Management{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-edit"></i> Edit Product
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Product Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ product.name }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="category" name="category" value="{{ product.category }}" placeholder="e.g., Electronics, Clothing, Food">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Product description (optional)">{{ product.description }}</textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Quantity <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" min="0" value="{{ product.quantity }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price ($) <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="price" name="price" min="0" step="0.01" value="{{ product.price }}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Update Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            <strong>Quick Tips:</strong>
+            <ul class="mb-0 mt-2">
+                <li>Product name is required and should be unique</li>
+                <li>Use descriptive categories to organize your inventory</li>
+                <li>Set quantity to 0 if the product is out of stock</li>
+                <li>Price should include the cost per unit</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
